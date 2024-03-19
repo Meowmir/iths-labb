@@ -6,7 +6,7 @@ export default function ClassGrid(){
   return (
       <Grid container style={{marginTop: 50}}>
         {classList.map((name) => (
-        <Grid item xs={4} sx={{borderStyle: "solid", borderColor: "white"}}>
+        <Grid key={name} item xs={4} sx={{borderStyle: "solid", borderColor: "white"}}>
             <h3>{name}</h3>
         </Grid>
         ))}
