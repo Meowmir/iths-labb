@@ -1,17 +1,6 @@
 import {Box, Button, TextField} from "@mui/material";
-import {useState} from "react";
 
-export default function AddStudent(){
-  const [newStudent, setNewStudent] = useState<string>("")
-
-  const handleClick = () => {
-    if (newStudent === "") {
-      alert("Name cannot be empty!")
-    } else {
-      setNewStudent(newStudent)
-    }
-  }
-
+export default function AddStudent({onChange, onClick} : {onChange: (name: string) => void, onClick: () => void}){
   return (
     <>
       <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center"}}>
@@ -23,12 +12,12 @@ export default function AddStudent(){
             backgroundColor: "white",
             borderRadius: 2,
           }}
-          onChange={(e) => setNewStudent(e.target.value)}
+          onChange={(e) => onChange(e.target.value)}
         />
         <Button
           variant="contained"
           sx={{ marginLeft: 2}}
-          onClick={handleClick}
+          onClick={onClick}
         >
           Add
         </Button>
