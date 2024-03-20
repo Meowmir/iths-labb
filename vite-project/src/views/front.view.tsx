@@ -3,15 +3,19 @@ import ClassGrid from "../components/class-grid.component.tsx";
 import {useEffect, useState} from "react";
 
 export default function FrontView() {
-  const [newStudent, setNewStudent] = useState<string>("")
-  const [classList, setList] = useState<string[]>([])
+  const [forename, setForename] = useState("")
+  const [surname, setSurname] = useState("")
+  const [classList, setList] = useState([{forename: "", surname: ""}])
 
   const handleClick = () => {
-    if (newStudent === "") {
-      alert("Name cannot be empty!")
+    if (forename === "") {
+      alert("Forename cannot be empty!")
+    } else if(surname === "") {
+      alert("Surname cannot be empty!")
     } else {
-      const capitalizedName = newStudent.charAt(0).toUpperCase() + newStudent.slice(1).toLowerCase()
-      setList([...classList, capitalizedName])
+      const capitalizedForename = forename.charAt(0).toUpperCase() + forename.slice(1).toLowerCase()
+      const capitalizedSurname = surname.charAt(0).toUpperCase() + surname.slice(1).toLowerCase()
+      setList([...classList, {forename: capitalizedForename, surname: capitalizedSurname}])
     }
   }
 
@@ -28,7 +32,7 @@ export default function FrontView() {
   return (
     <>
       <h1>CLASS LIST</h1>
-      <AddStudent onChange={setNewStudent} onClick={handleClick}/>
+      <AddStudent onForenameChange={setForename} onSurnameChange={setSurname} onClick={handleClick}/>
       <ClassGrid list={classList}/>
     </>
   )
