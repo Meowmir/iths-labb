@@ -1,4 +1,5 @@
 import {Grid} from "@mui/material";
+import StudentDisplay from "./student-display.component.tsx";
 
 export default function ClassGrid({list} : {list: { forename: string, surname: string }[]}) {
   //const sortedList = list.sort()
@@ -10,7 +11,7 @@ export default function ClassGrid({list} : {list: { forename: string, surname: s
     <Grid container style={{marginTop: 50, width: 800}}>
       {list.map((student, i) => (
         <Grid key={i} item xs={3} sx={{borderStyle: "solid", borderColor: "white"}}>
-          <h3>{student.forename} {student.surname}</h3>
+          <StudentDisplay forename={student.forename} surname={student.surname}/>
         </Grid>
       ))}
     </Grid>
