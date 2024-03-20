@@ -1,6 +1,6 @@
 import AddStudent from "../components/add-student.component.tsx";
 import ClassGrid from "../components/class-grid.component.tsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export default function FrontView() {
   const [newStudent, setNewStudent] = useState<string>("")
@@ -14,6 +14,16 @@ export default function FrontView() {
       setList([...classList, capitalizedName])
     }
   }
+
+  useEffect(() => {
+    const list = localStorage.getItem('classList')
+    list ? setList(JSON.parse(list)) : '[]'
+  }, [])
+
+  useEffect(() => {
+    window.localStorage.setItem('classList', JSON.stringify(classList));
+  }, [classList]);
+
 
   return (
     <>
