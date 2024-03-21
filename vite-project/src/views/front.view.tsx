@@ -1,11 +1,12 @@
 import AddStudent from "../components/add-student.component.tsx";
 import ClassGrid from "../components/class-grid.component.tsx";
 import {useEffect, useState} from "react";
+import getRandomColor from "../utils/get-random-color.util.ts";
 
 export default function FrontView() {
   const [forename, setForename] = useState("")
   const [surname, setSurname] = useState("")
-  const [classList, setList] = useState([{forename: "", surname: ""}])
+  const [classList, setList] = useState([{forename: "", surname: "", color: ""}])
 
   const handleClick = () => {
     if (forename === "") {
@@ -15,7 +16,7 @@ export default function FrontView() {
     } else {
       const capitalizedForename = forename.charAt(0).toUpperCase() + forename.slice(1).toLowerCase()
       const capitalizedSurname = surname.charAt(0).toUpperCase() + surname.slice(1).toLowerCase()
-      setList([...classList, {forename: capitalizedForename, surname: capitalizedSurname}])
+      setList([...classList, {forename: capitalizedForename, surname: capitalizedSurname, color: getRandomColor()}])
     }
   }
 
