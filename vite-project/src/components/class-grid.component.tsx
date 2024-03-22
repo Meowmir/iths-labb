@@ -1,7 +1,9 @@
 import {Grid} from "@mui/material";
 import StudentDisplay from "./student-display.component.tsx";
 
-export default function ClassGrid({list} : {list: { forename: string, surname: string, color: string }[]}) {
+export type ListItem = { forename: string, surname: string, color: string }
+
+export default function ClassGrid({list} : {list: ListItem[]}) {
   //const sortedList = list.sort()
 
   /*if(list[0].forename === "") {

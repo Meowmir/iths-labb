@@ -1,12 +1,16 @@
 import AddStudent from "../components/add-student.component.tsx";
-import ClassGrid from "../components/class-grid.component.tsx";
+import ClassGrid, {ListItem} from "../components/class-grid.component.tsx";
 import {useEffect, useRef, useState} from "react";
 import getRandomColor from "../utils/get-random-color.util.ts";
 
+const STORAGE_KEY="classList"
+function getStateFromStorage(): ListItem[] {
+  return JSON.parse(localStorage.getItem(STORAGE_KEY) ||'[]')
+}
 export default function FrontView() {
   const [forename, setForename] = useState("")
   const [surname, setSurname] = useState("")
-  const [classList, setList] = useState([{forename: "", surname: "", color: ""}])
+  const [classList, setList] = useState(getStateFromStorage())
   const myButtonRef = useRef<HTMLButtonElement>(null)
 
   const handleClick = () => {
@@ -25,14 +29,12 @@ export default function FrontView() {
   }
 
   useEffect(() => {
-    const list = localStorage.getItem('classList')
+    const list = localStorage.getItem(STORAGE_KEY)
     list ? setList(JSON.parse(list)) : '[]'
   }, [])
 
   useEffect(() => {
-    !classList
-      ? window.localStorage.setItem('classList', "[]")
-      : window.localStorage.setItem('classList', JSON.stringify(classList));
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(classList));
   }, [classList]);
 
   return (
