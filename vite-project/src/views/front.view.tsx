@@ -26,9 +26,10 @@ export default function FrontView() {
   }, [])
 
   useEffect(() => {
-    window.localStorage.setItem('classList', JSON.stringify(classList));
+    !classList
+      ? window.localStorage.setItem('classList', "[]")
+      : window.localStorage.setItem('classList', JSON.stringify(classList));
   }, [classList]);
-
 
   return (
     <>
