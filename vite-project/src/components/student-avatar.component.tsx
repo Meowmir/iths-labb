@@ -1,6 +1,7 @@
 import {Avatar} from "@mui/material";
+import {ListItem} from "../types.ts";
 
-export default function StudentAvatar({forename, surname, color} : {forename: string, surname: string, color: string}){
+export default function StudentAvatar({forename, surname, color} : ListItem){
   return (
     <Avatar
       sx={{
