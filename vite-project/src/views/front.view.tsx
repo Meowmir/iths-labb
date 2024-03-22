@@ -1,17 +1,22 @@
 import AddStudent from "../components/add-student.component.tsx";
 import ClassGrid from "../components/class-grid.component.tsx";
 import {useEffect, useState} from "react";
+import getRandomColor from "../utils/get-random-color.util.ts";
 
 export default function FrontView() {
-  const [newStudent, setNewStudent] = useState<string>("")
-  const [classList, setList] = useState<string[]>([])
+  const [forename, setForename] = useState("")
+  const [surname, setSurname] = useState("")
+  const [classList, setList] = useState([{forename: "", surname: "", color: ""}])
 
   const handleClick = () => {
-    if (newStudent === "") {
-      alert("Name cannot be empty!")
+    if (forename === "") {
+      alert("Forename cannot be empty!")
+    } else if(surname === "") {
+      alert("Surname cannot be empty!")
     } else {
-      const capitalizedName = newStudent.charAt(0).toUpperCase() + newStudent.slice(1).toLowerCase()
-      setList([...classList, capitalizedName])
+      const capitalizedForename = forename.charAt(0).toUpperCase() + forename.slice(1).toLowerCase()
+      const capitalizedSurname = surname.charAt(0).toUpperCase() + surname.slice(1).toLowerCase()
+      setList([...classList, {forename: capitalizedForename, surname: capitalizedSurname, color: getRandomColor()}])
     }
   }
 
@@ -21,14 +26,15 @@ export default function FrontView() {
   }, [])
 
   useEffect(() => {
-    window.localStorage.setItem('classList', JSON.stringify(classList));
+    !classList
+      ? window.localStorage.setItem('classList', "[]")
+      : window.localStorage.setItem('classList', JSON.stringify(classList));
   }, [classList]);
-
 
   return (
     <>
       <h1>CLASS LIST</h1>
-      <AddStudent onChange={setNewStudent} onClick={handleClick}/>
+      <AddStudent onForenameChange={setForename} onSurnameChange={setSurname} onClick={handleClick}/>
       <ClassGrid list={classList}/>
     </>
   )
