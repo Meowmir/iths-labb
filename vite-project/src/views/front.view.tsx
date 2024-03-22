@@ -1,12 +1,9 @@
 import AddStudent from "../components/add-student.component.tsx";
-import ClassGrid, {ListItem} from "../components/class-grid.component.tsx";
+import ClassGrid from "../components/class-grid.component.tsx";
 import {useEffect, useRef, useState} from "react";
 import getRandomColor from "../utils/get-random-color.util.ts";
+import getStateFromStorage, {STORAGE_KEY} from "../utils/get-state-from-storange.util.ts";
 
-const STORAGE_KEY="classList"
-function getStateFromStorage(): ListItem[] {
-  return JSON.parse(localStorage.getItem(STORAGE_KEY) ||'[]')
-}
 export default function FrontView() {
   const [forename, setForename] = useState("")
   const [surname, setSurname] = useState("")

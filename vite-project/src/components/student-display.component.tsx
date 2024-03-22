@@ -1,6 +1,7 @@
 import StudentAvatar from "./student-avatar.component.tsx";
+import {ListItem} from "../types.ts";
 
-export default function StudentDisplay({forename, surname, color}: {forename: string, surname: string, color: string}){
+export default function StudentDisplay({forename, surname, color} : ListItem){
   return (
     <>
       <StudentAvatar forename={forename} surname={surname} color={color}/>

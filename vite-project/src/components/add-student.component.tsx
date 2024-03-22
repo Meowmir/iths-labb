@@ -1,13 +1,8 @@
 import {Box} from "@mui/material";
 import NameTextfield from "./name-textfield.component.tsx";
-import {RefObject} from "react";
+import {AddStudentProps} from "../types.ts";
 
-export default function AddStudent({onForenameChange, onSurnameChange, onClick, myButtonRef}: {
-  onForenameChange: (forename: string) => void,
-  onSurnameChange: (surname: string) => void,
-  onClick: () => void,
-  myButtonRef: RefObject<HTMLButtonElement>
-}) {
+export default function AddStudent({onForenameChange, onSurnameChange, onClick, myButtonRef} : AddStudentProps) {
   return (
     <>
       <Box sx={{display: "flex", alignItems: "center", justifyContent: "center"}}>

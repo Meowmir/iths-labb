@@ -1,6 +1,7 @@
 import {TextField} from "@mui/material";
+import {NameTextfieldProps} from "../types.ts";
 
-export default function NameTextfield({onChange, name} : {onChange: (name: string) => void, name: string}){
+export default function NameTextfield({onChange, name} : NameTextfieldProps){
   return (
     <TextField
       label={name}
